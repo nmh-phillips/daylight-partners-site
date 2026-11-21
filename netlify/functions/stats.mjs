@@ -17,9 +17,10 @@ async function readEvents(store, day) {
 }
 
 export default async (req) => {
-  const key = process.env.STATS_KEY;
+  const key = (process.env.STATS_KEY || "").trim();
   if (!key) return json({ error: "Set STATS_KEY in Netlify first." }, 500);
-  if (req.headers.get("x-stats-key") !== key) return json({ error: "Wrong key." }, 401);
+  const given = decodeURIComponent(req.headers.get("x-stats-key") || "").trim();
+  if (given !== key) return json({ error: "Wrong key. It's case-sensitive and must match STATS_KEY in Netlify exactly." }, 401);
 
   const n = Math.min(Math.max(parseInt(new URL(req.url).searchParams.get("days"), 10) || 7, 1), 90);
   const store = getStore("stats");
