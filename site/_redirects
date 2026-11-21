@@ -1,0 +1,15 @@
+# Send every other address to the primary domain, daylightpartners.co.uk
+https://www.daylightpartners.co.uk/*             https://daylightpartners.co.uk/:splat   301!
+http://www.daylightpartners.co.uk/*              https://daylightpartners.co.uk/:splat   301!
+https://nmhphillips-consulting.co.uk/*           https://daylightpartners.co.uk/:splat   301!
+http://nmhphillips-consulting.co.uk/*            https://daylightpartners.co.uk/:splat   301!
+https://www.nmhphillips-consulting.co.uk/*       https://daylightpartners.co.uk/:splat   301!
+http://www.nmhphillips-consulting.co.uk/*        https://daylightpartners.co.uk/:splat   301!
+https://nmhphillips-consulting.com/*             https://daylightpartners.co.uk/:splat   301!
+http://nmhphillips-consulting.com/*              https://daylightpartners.co.uk/:splat   301!
+https://www.nmhphillips-consulting.com/*         https://daylightpartners.co.uk/:splat   301!
+http://www.nmhphillips-consulting.com/*          https://daylightpartners.co.uk/:splat   301!
+https://nmhphillips-consulting.netlify.app/*     https://daylightpartners.co.uk/:splat   301!
+http://nmhphillips-consulting.netlify.app/*      https://daylightpartners.co.uk/:splat   301!
+/about.html   /team.html   301
+/ai-finance.html   /automated-solutions.html   301
