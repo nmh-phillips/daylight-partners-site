@@ -18,7 +18,7 @@ names = {
 desc = {
     "index.html": "Fractional CFO and fundraising support for UK SMEs and startups, from an ICAEW Chartered Accountant who has raised from £325k to a £30M Series B.",
     "fractional-cfo.html": "Fractional and interim CFO services: finance function builds, KPIs, board reporting, cash management and fundraising. Retainers from £3,500 a month.",
-    "raise-ready.html": "Investor-ready financial model, deck numbers and data room checklist in 5–15 days, reviewed by a CFO who has raised £30M. Fixed fees from £2,000.",
+    "raise-ready.html": "Investor-ready financial model, deck numbers and data room checklist in 5–15 days, reviewed by a CFO who has helped raise £32M+. Fixed fees from £2,000.",
     "automated-solutions.html": "Finance automation and a live CFO dashboard for UK SMEs and scale-ups: faster month-end, automated board reporting and 13-week cash forecasting, signed off by a chartered CFO.",
     "operations.html": "Operations and systems support for growing businesses: revenue operations, CRM, billing and collections, back-office systems and compliance.",
     "team.html": "Meet the Daylight Partners team: senior finance and operations leaders with Big Four, AIG, Liberty Mutual and BNY Mellon backgrounds.",
