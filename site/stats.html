@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Website stats · Daylight Partners</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root { --navy: #14213D; --ink: #14213D; --muted: #4A5570; --line: #D9DCE3; --bg: #FBFAF7; --card: #FFFFFF; --gold: #E2B04A; --bar: #14213D; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'IBM Plex Sans', system-ui, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.5; }
+  header { background: var(--navy); color: #FBFAF7; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  header .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-top: 18px; padding-bottom: 18px; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 20px; color: #FBFAF7; text-decoration: none; }
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  input, select, button { font: inherit; border-radius: 6px; min-height: 40px; }
+  input, select { border: 1px solid #3A4A6B; background: #1B2A4A; color: #FBFAF7; padding: 6px 10px; }
+  input { width: 160px; }
+  button { border: 0; background: var(--gold); color: var(--navy); font-weight: 600; padding: 6px 16px; cursor: pointer; }
+  main { padding: 32px 0 64px; }
+  h1 { margin: 0 0 4px; font-size: 32px; letter-spacing: -0.02em; }
+  .sub { margin: 0 0 24px; color: var(--muted); }
+  .msg { padding: 16px 20px; border: 1px solid var(--line); background: var(--card); border-radius: 10px; color: var(--muted); }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-bottom: 24px; }
+  .tile { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
+  .tile .k { font-size: 14px; color: var(--muted); }
+  .tile .v { font-family: 'IBM Plex Mono', monospace; font-size: 30px; font-weight: 500; margin-top: 2px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 20px 22px; min-width: 0; }
+  .card h2 { margin: 0 0 4px; font-size: 18px; }
+  .card .hint { margin: 0 0 12px; font-size: 13px; color: var(--muted); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; margin-top: 16px; }
+  .chart { display: flex; align-items: flex-end; gap: 4px; height: 160px; padding-top: 8px; }
+  .chart .col { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; gap: 4px; }
+  .chart .b { width: 100%; max-width: 36px; background: var(--bar); border-radius: 3px 3px 0 0; min-height: 2px; }
+  .chart .n { font-size: 11px; color: var(--muted); }
+  .chart .d { font-size: 11px; color: var(--muted); white-space: nowrap; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { text-align: left; font-weight: 600; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+  td { padding: 8px; border-bottom: 1px solid #EEF0F4; vertical-align: middle; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .barcell { position: relative; }
+  .barcell span.fill { position: absolute; left: 0; top: 4px; bottom: 4px; background: #F1EFE8; border-radius: 3px; z-index: 0; }
+  .barcell span.lbl { position: relative; z-index: 1; overflow-wrap: break-word; }
+  .empty { color: var(--muted); font-size: 14px; }
+  .grid { grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); }
+  @media (max-width: 600px) {
+    .chart .n { display: none; }
+    .chart .d { visibility: hidden; }
+    .chart .col:first-child .d, .chart .col:last-child .d { visibility: visible; }
+    .chart .col:first-child { align-items: flex-start; }
+    .chart .col:last-child { align-items: flex-end; }
+    .tiles { grid-template-columns: repeat(2, 1fr); }
+    .controls input { width: 100%; flex: 1 1 140px; }
+  }
+  .foot { margin-top: 24px; font-size: 13px; color: var(--muted); }
+  .foot label { display: inline-flex; gap: 6px; align-items: center; }
+  .foot input { width: auto; min-height: 0; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="/"><svg width="28" height="28" viewBox="0 0 40 40" aria-hidden="true"><path d="M8 26a12 12 0 0 1 24 0Z" fill="#E2B04A"/><g stroke="#E2B04A" stroke-width="2.5" stroke-linecap="round"><line x1="20" y1="4" x2="20" y2="9"/><line x1="7.3" y1="11.3" x2="10.8" y2="14.8"/><line x1="32.7" y1="11.3" x2="29.2" y2="14.8"/><line x1="2" y1="26" x2="38" y2="26"/><line x1="10" y1="32" x2="30" y2="32"/></g></svg>Daylight Partners</a>
+    <form class="controls" id="f">
+      <input id="key" type="password" placeholder="Stats key" aria-label="Stats key" autocomplete="current-password">
+      <select id="days" aria-label="Period"><option value="1">Today</option><option value="7" selected>Last 7 days</option><option value="30">Last 30 days</option><option value="90">Last 90 days</option></select>
+      <button type="submit">Show</button>
+    </form>
+  </div>
+</header>
+<main class="wrap">
+  <h1>Website stats</h1>
+  <p class="sub" id="range">Enter the stats key to see who's visiting and what they look at.</p>
+  <div id="out"></div>
+  <div class="foot">
+    <p>Anonymous and cookie-free: no personal data is stored. Visitors are counted once per day per device, so someone who visits on 3 different days counts as 3.</p>
+    <label><input type="checkbox" id="ignore"> Don't count my own visits on this device</label>
+  </div>
+</main>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var store = { get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: function (k, v) { try { v === null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} } };
+  var names = { "/": "Home", "/fractional-cfo.html": "Fractional CFO", "/raise-ready.html": "Raise Ready", "/automated-solutions.html": "Automated Solutions", "/operations.html": "Operations", "/team.html": "Team", "/contact.html": "Contact", "/privacy.html": "Privacy", "/thanks.html": "Thank you (form sent)", "/demo/": "CFO Dashboard demo" };
+  var cn; try { cn = new Intl.DisplayNames(["en-GB"], { type: "region" }); } catch (e) {}
+  var country = function (c) { if (!c) return "Unknown"; try { return cn ? cn.of(c) : c; } catch (e) { return c; } };
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+  var fmt = function (n) { return Number(n || 0).toLocaleString("en-GB"); };
+  var dur = function (ms) { var s = Math.round(ms / 1000); if (s < 60) return s + "s"; return Math.floor(s / 60) + "m " + String(s % 60).padStart(2, "0") + "s"; };
+  var sorted = function (o) { return Object.entries(o || {}).sort(function (a, b) { return b[1] - a[1]; }); };
+
+  function table(title, hint, rows, cols) {
+    if (!rows.length) return '<div class="card"><h2>' + title + '</h2><p class="hint">' + hint + '</p><p class="empty">Nothing yet.</p></div>';
+    var max = Math.max.apply(null, rows.map(function (r) { return r[1]; })) || 1;
+    var h = '<div class="card"><h2>' + title + '</h2><p class="hint">' + hint + '</p><table><thead><tr>' + cols.map(function (c, i) { return '<th' + (i ? ' class="num"' : '') + '>' + c + '</th>'; }).join("") + '</tr></thead><tbody>';
+    rows.slice(0, 12).forEach(function (r) {
+      h += '<tr><td class="barcell"><span class="fill" style="width:' + Math.round((r[1] / max) * 100) + '%"></span><span class="lbl">' + esc(r[0]) + '</span></td>';
+      for (var i = 1; i < r.length; i++) h += '<td class="num">' + (i === 1 ? fmt(r[i]) : r[i]) + '</td>';
+      h += '</tr>';
+    });
+    return h + '</tbody></table></div>';
+  }
+
+  function render(d) {
+    var t = d.total;
+    var pages = Object.entries(t.pages).filter(function (e) { return e[1].views; }).sort(function (a, b) { return b[1].views - a[1].views; });
+    var ms = 0, leaves = 0; pages.forEach(function (p) { ms += p[1].ms; leaves += p[1].leaves; });
+    var c = t.clicks || {};
+    var h = '<div class="tiles">' +
+      tile("Visitors", fmt(t.visitors)) + tile("Page views", fmt(t.views)) +
+      tile("Pages per visitor", t.visitors ? (t.views / t.visitors).toFixed(1) : "–") +
+      tile("Avg time on a page", leaves ? dur(ms / leaves) : "–") +
+      tile("Book a call clicks", fmt(c["Book a call"])) + tile("Contact forms sent", fmt(c["Contact form sent"])) + '</div>';
+
+    var maxV = Math.max.apply(null, d.daily.map(function (x) { return x.visitors; })) || 1;
+    h += '<div class="card"><h2>Visitors per day</h2><p class="hint">Hover a bar for page views that day.</p><div class="chart">' +
+      d.daily.map(function (x, i) {
+        var lab = new Date(x.day + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "UTC" });
+        var showLab = d.daily.length <= 14 || i % Math.ceil(d.daily.length / 10) === 0 || i === d.daily.length - 1;
+        return '<div class="col" title="' + lab + ': ' + x.visitors + ' visitors, ' + x.views + ' page views"><span class="n">' + (x.visitors || "") + '</span><div class="b" style="height:' + Math.round((x.visitors / maxV) * 100) + '%"></div><span class="d">' + (showLab ? lab : "&nbsp;") + '</span></div>';
+      }).join("") + '</div></div>';
+
+    h += '<div class="grid">';
+    h += table("Pages people look at", "Views, average time on the page and how far down people scroll.",
+      pages.map(function (p) { var s = p[1]; return [names[p[0]] || p[0], s.views, s.leaves ? dur(s.ms / s.leaves) : "–", s.leaves ? Math.round(s.sc / s.leaves) + "%" : "–"]; }),
+      ["Page", "Views", "Avg time", "Scrolled"]);
+    h += table("Where visitors come from", "The site they clicked through from. Direct means typed in, bookmarked or from an app like email or WhatsApp.", sorted(t.refs), ["Source", "Views"]);
+    h += table("Actions taken", "Clicks on the things that lead to work.", sorted(t.clicks), ["Action", "Clicks"]);
+    h += table("First page seen", "Where each day's visitors landed first.", sorted(t.entries).map(function (e) { return [names[e[0]] || e[0], e[1]]; }), ["Page", "Visitors"]);
+    h += table("Countries", "Based on the visitor's network location.", sorted(t.countries).map(function (e) { return [country(e[0]), e[1]]; }), ["Country", "Views"]);
+    h += table("Devices", "By screen size.", sorted(t.devices).map(function (e) { return [e[0].charAt(0).toUpperCase() + e[0].slice(1), e[1]]; }), ["Device", "Views"]);
+    if (Object.keys(t.sources || {}).length) h += table("Campaign tags", "From links tagged ?utm_source= or ?ref=, e.g. daylightpartners.co.uk/?ref=linkedin-launch", sorted(t.sources), ["Tag", "Views"]);
+    h += '</div>';
+    $("out").innerHTML = h;
+  }
+  function tile(k, v) { return '<div class="tile"><div class="k">' + k + '</div><div class="v">' + v + '</div></div>'; }
+
+  function load() {
+    var key = $("key").value.trim();
+    if (!key) { $("out").innerHTML = '<div class="msg">Enter the stats key.</div>'; return; }
+    $("out").innerHTML = '<div class="msg">Loading…</div>';
+    fetch("/.netlify/functions/stats?days=" + $("days").value, { headers: { "x-stats-key": key } })
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (res) {
+        if (!res.ok) { $("out").innerHTML = '<div class="msg">' + esc(res.j.error || "Couldn't load the stats.") + '</div>'; return; }
+        store.set("dp_stats_key", key);
+        var f = new Date(res.j.from + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "long", timeZone: "UTC" });
+        var to = new Date(res.j.to + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+        $("range").textContent = (res.j.from === res.j.to ? to : f + " to " + to);
+        if (!res.j.total.views) { $("out").innerHTML = '<div class="msg">No visits recorded in this period yet.</div>'; return; }
+        render(res.j);
+      })
+      .catch(function () { $("out").innerHTML = '<div class="msg">Couldn\'t reach the stats service. Try again in a minute.</div>'; });
+  }
+
+  $("f").addEventListener("submit", function (e) { e.preventDefault(); load(); });
+  $("days").addEventListener("change", function () { if ($("key").value) load(); });
+  var saved = store.get("dp_stats_key"); if (saved) { $("key").value = saved; load(); }
+  $("ignore").checked = store.get("dp_ignore") === "1";
+  $("ignore").addEventListener("change", function () { store.set("dp_ignore", this.checked ? "1" : null); });
+})();
+</script>
+</body>
+</html>

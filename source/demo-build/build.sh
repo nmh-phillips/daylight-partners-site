@@ -13,4 +13,5 @@ rm -rf "$SITE/demo"; mkdir -p "$SITE/demo"
 cp "$B/out/index.html" "$SITE/demo/"; cp -r "$B/out/_next" "$SITE/demo/nx"
 sed -i 's#\./_next/#./nx/#g; s#"/_next/#"./nx/#g' "$SITE/demo/index.html"
 grep -rl '_next/' "$SITE/demo/nx" | xargs -r sed -i 's#"\./_next/"#"./nx/"#g; s#/_next/#/nx/#g'
+sed -i 's#</head>#<script defer src="/t.js"></script></head>#' "$SITE/demo/index.html"
 echo "Demo rebuilt in site/demo"

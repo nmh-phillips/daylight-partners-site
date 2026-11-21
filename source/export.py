@@ -43,7 +43,8 @@ for s, d in names.items():
         f'<meta property="og:description" content="{html.escape(desc[d])}">\n'
         f'<meta property="og:url" content="{url}">\n'
         f'<meta property="og:image" content="{BASE}/og-image.png">\n'
-        '<meta name="twitter:card" content="summary_large_image">'
+        '<meta name="twitter:card" content="summary_large_image">\n'
+        '<script defer src="/t.js"></script>'
     )
     t = t.replace('<script src="./support.js"></script>', meta + helmet.rstrip())
     t = t.replace("<x-dc>\n", "").replace("</x-dc>\n", "")
