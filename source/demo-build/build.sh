@@ -7,7 +7,8 @@ cp -r "$DASH"/{app,client,components,lib,package.json,package-lock.json,tsconfig
 (cd "$B" && rm -rf app/api app/auth app/login && find app -mindepth 1 -maxdepth 1 -type d -exec rm -rf {} + )
 cp "$HERE/page.tsx" "$B/app/page.tsx"; cp "$HERE/next.config.ts" "$B/next.config.ts"
 # Public demo footer uses the trading name.
-grep -rl "Prepared by NMH Phillips Consulting Ltd" "$B/components" | xargs -r sed -i 's/Prepared by NMH Phillips Consulting Ltd/Prepared by Daylight Partners/'
+{ grep -rl "Prepared by NMH Phillips Consulting Ltd" "$B/components" || true; } | xargs -r sed -i "s/Prepared by NMH Phillips Consulting Ltd/Prepared by Daylight Partners/"
+sed -i 's/"NMH Phillips Consulting Ltd"/"Daylight Partners"/' "$B/lib/client-config.ts"
 (cd "$B" && npm ci --silent && npx next build)
 rm -rf "$SITE/demo"; mkdir -p "$SITE/demo"
 cp "$B/out/index.html" "$SITE/demo/"; cp -r "$B/out/_next" "$SITE/demo/nx"

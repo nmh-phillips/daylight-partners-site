@@ -17,12 +17,17 @@ import { RiskRegister } from "@/components/modules/risks/RiskRegister";
 import { MarketInsights } from "@/components/modules/market/MarketInsights";
 import { Customise } from "@/components/modules/customise/Customise";
 import { Subscriptions } from "@/components/modules/subscriptions/Subscriptions";
+import { SoftwareSpend } from "@/components/modules/software/SoftwareSpend";
+import { demoSoftware } from "@/lib/software";
+
+const SOFTWARE = demoSoftware(); // built once so edits in the demo survive re-renders
 
 function view(k: ModuleKey) {
   switch (k) {
     case "board": return <BoardReport dataset={demoDataset} />;
     case "pipeline": return <Pipeline />;
     case "subscriptions": return <Subscriptions />;
+    case "software": return <SoftwareSpend data={SOFTWARE} demo isAdmin={false} hasRegister={false} />;
     case "pricing": return <Pricing />;
     case "clients": return <ClientProfitability />;
     case "receivables": return <Receivables />;
@@ -32,6 +37,12 @@ function view(k: ModuleKey) {
     case "risks": return <RiskRegister />;
     case "market": return <MarketInsights />;
     case "customise": return <Customise />;
+    case "data": return (
+      <div className="card">
+        <h2>Data</h2>
+        <p className="card-sub">In the live app, this is where you upload month-end packs from Excel and connect Xero (read-only) for live receivables, payables and software spend. Uploads stay in your own workspace.</p>
+      </div>
+    );
     default: return <ExecDashboard dataset={demoDataset} />;
   }
 }
