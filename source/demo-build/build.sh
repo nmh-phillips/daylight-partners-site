@@ -3,7 +3,7 @@
 # Usage: source/demo-build/build.sh /path/to/cfo-dashboard
 set -euo pipefail
 DASH="$1"; HERE="$(cd "$(dirname "$0")" && pwd)"; SITE="$HERE/../../site"; B="$(mktemp -d)"
-cp -r "$DASH"/{app,components,lib,package.json,package-lock.json,tsconfig.json} "$B"/
+cp -r "$DASH"/{app,client,components,lib,package.json,package-lock.json,tsconfig.json} "$B"/
 (cd "$B" && rm -rf app/api app/auth app/login && find app -mindepth 1 -maxdepth 1 -type d -exec rm -rf {} + )
 cp "$HERE/page.tsx" "$B/app/page.tsx"; cp "$HERE/next.config.ts" "$B/next.config.ts"
 # Public demo footer uses the trading name.

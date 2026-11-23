@@ -16,11 +16,13 @@ import { ActionsTracker } from "@/components/modules/actions/ActionsTracker";
 import { RiskRegister } from "@/components/modules/risks/RiskRegister";
 import { MarketInsights } from "@/components/modules/market/MarketInsights";
 import { Customise } from "@/components/modules/customise/Customise";
+import { Subscriptions } from "@/components/modules/subscriptions/Subscriptions";
 
 function view(k: ModuleKey) {
   switch (k) {
     case "board": return <BoardReport dataset={demoDataset} />;
     case "pipeline": return <Pipeline />;
+    case "subscriptions": return <Subscriptions />;
     case "pricing": return <Pricing />;
     case "clients": return <ClientProfitability />;
     case "receivables": return <Receivables />;
