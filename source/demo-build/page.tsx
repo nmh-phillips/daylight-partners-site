@@ -40,7 +40,7 @@ function view(k: ModuleKey) {
     case "data": return (
       <div className="card">
         <h2>Data</h2>
-        <p className="card-sub">In the live app, this is where you upload month-end packs from Excel and connect Xero (read-only) for live receivables, payables and software spend. Uploads stay in your own workspace.</p>
+        <p className="card-sub">In the live app, this is where you upload month-end packs from Excel and connect Xero and Zoho CRM (read-only) for live receivables, payables, software spend and pipeline. Uploads stay in your own workspace.</p>
       </div>
     );
     default: return <ExecDashboard dataset={demoDataset} />;
