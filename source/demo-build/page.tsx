@@ -19,6 +19,10 @@ import { Customise } from "@/components/modules/customise/Customise";
 import { Subscriptions } from "@/components/modules/subscriptions/Subscriptions";
 import { SoftwareSpend } from "@/components/modules/software/SoftwareSpend";
 import { demoSoftware } from "@/lib/software";
+import { Revenue } from "@/components/modules/revenue/Revenue";
+import { demoRevenue } from "@/lib/revenue";
+
+const REVENUE = demoRevenue();
 
 const SOFTWARE = demoSoftware(); // built once so edits in the demo survive re-renders
 
@@ -28,6 +32,7 @@ function view(k: ModuleKey) {
     case "pipeline": return <Pipeline />;
     case "subscriptions": return <Subscriptions />;
     case "software": return <SoftwareSpend data={SOFTWARE} demo isAdmin={false} hasRegister={false} />;
+    case "revenue": return <Revenue doc={REVENUE} isAdmin={false} xero={null} yearEndMonth={12} note="Demo: in the live app new invoices come from Xero and the monthly check runs against Xero's profit and loss." />;
     case "pricing": return <Pricing />;
     case "clients": return <ClientProfitability />;
     case "receivables": return <Receivables />;
