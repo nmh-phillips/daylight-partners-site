@@ -27,6 +27,16 @@ import { SoftwareSpend } from "@/components/modules/software/SoftwareSpend";
 import { demoSoftware } from "@/lib/software";
 import { Revenue } from "@/components/modules/revenue/Revenue";
 import { demoRevenue } from "@/lib/revenue";
+import { customerBook, withInvoiceCurrencies } from "@/lib/customers";
+import { Renewals } from "@/components/modules/customers/Renewals";
+import { Retention } from "@/components/modules/customers/Retention";
+import { Margin } from "@/components/modules/margin/Margin";
+import { RollingForecast } from "@/components/modules/margin/RollingForecast";
+const BOOK_AS_OF = "2026-11-27";
+const BOOK = withInvoiceCurrencies(customerBook(demoRevenue(), BOOK_AS_OF), [
+  { contact: "Brightwater Syndicate", currency: "AUD", date: "2026-06-01" },
+  { contact: "Calder Specialty", currency: "CAD", date: "2026-05-01" },
+]);
 
 const REVENUE = demoRevenue();
 const DEALS = { deals: demoDeals, source: "demo pipeline", asOf: DEMO_AS_OF };
@@ -43,11 +53,15 @@ function view(k: ModuleKey) {
     case "software": return <SoftwareSpend data={SOFTWARE} demo isAdmin={false} hasRegister={false} />;
     case "revenue": return <Revenue doc={REVENUE} isAdmin={false} xero={null} yearEndMonth={12} note="Demo: in the live app new invoices come from Xero and the monthly check runs against Xero's profit and loss." />;
     case "pricing": return <Pricing />;
+    case "renewals": return <Renewals book={BOOK} asOf={BOOK_AS_OF} />;
+    case "retention": return <Retention book={BOOK} asOf={BOOK_AS_OF} yearEndMonth={12} />;
+    case "margin": return <Margin dataset={demoDataset} />;
+    case "rolling": return <RollingForecast dataset={demoDataset} />;
     case "clients": return <ClientProfitability />;
     case "receivables": return <Receivables />;
     case "payables": return <Payables />;
     case "close": return <CloseTracker month={DEMO_CLOSE_MONTH} doc={DEMO_CLOSE_DOC} isAdmin xero={DEMO_CLOSE_XERO} demo />;
-    case "external": return <ExternalFactors signedIn={false} isAdmin={false} doc={EXTERNAL_DOC} risks={null} news={{}} />;
+    case "external": return <ExternalFactors signedIn={false} isAdmin={false} doc={EXTERNAL_DOC} risks={null} news={{}} book={BOOK} />;
     case "people": return <PeoplePlaceholder />;
     case "health": return <ClientHealthPlaceholder />;
     case "actions": return <ActionsTracker />;
