@@ -15,7 +15,7 @@ import { CloseTracker } from "@/components/modules/close/CloseTracker";
 import { DEMO_CLOSE_DOC, DEMO_CLOSE_MONTH, DEMO_CLOSE_XERO } from "@/lib/close-demo";
 import { ExternalFactors } from "@/components/modules/external/ExternalFactors";
 import { emptyExternalDoc, DEFAULT_EXTERNAL_CATEGORIES } from "@/lib/external";
-import { PeoplePlaceholder, ClientHealthPlaceholder } from "@/components/modules/PlaceholderPages";
+import { PeopleDemo, ClientHealthDemo } from "@/components/modules/DemoPeopleHealth";
 import { DEMO_AS_OF, demoDeals } from "@/lib/pipeline";
 import { budgetNewArr } from "@/lib/arr";
 import { ActionsTracker } from "@/components/modules/actions/ActionsTracker";
@@ -27,20 +27,18 @@ import { SoftwareSpend } from "@/components/modules/software/SoftwareSpend";
 import { demoSoftware } from "@/lib/software";
 import { Revenue } from "@/components/modules/revenue/Revenue";
 import { demoRevenue } from "@/lib/revenue";
-import { customerBook, withInvoiceCurrencies } from "@/lib/customers";
+import { demoCustomerBook } from "@/lib/demo-book";
 import { Renewals } from "@/components/modules/customers/Renewals";
 import { Retention } from "@/components/modules/customers/Retention";
 import { Margin } from "@/components/modules/margin/Margin";
 import { RollingForecast } from "@/components/modules/margin/RollingForecast";
 const BOOK_AS_OF = "2026-11-27";
-const BOOK = withInvoiceCurrencies(customerBook(demoRevenue(), BOOK_AS_OF), [
-  { contact: "Brightwater Syndicate", currency: "AUD", date: "2026-06-01" },
-  { contact: "Calder Specialty", currency: "CAD", date: "2026-05-01" },
-]);
+const BOOK = demoCustomerBook(BOOK_AS_OF);
 
 const REVENUE = demoRevenue();
 const DEALS = { deals: demoDeals, source: "demo pipeline", asOf: DEMO_AS_OF };
-const NEW_ARR_BUDGET = demoDataset.arr ? budgetNewArr(demoDataset.arr) : null;
+// FY26 from the demo pack's ARR budget, then next year's new ARR plan (made up) so later quarters have a target.
+const NEW_ARR_BUDGET = demoDataset.arr ? [...budgetNewArr(demoDataset.arr), ...Array.from({ length: 12 }, (_, i) => ({ month: `2027-${String(i + 1).padStart(2, "0")}`, revenue: 55000 }))] : null;
 const EXTERNAL_DOC = emptyExternalDoc(DEFAULT_EXTERNAL_CATEGORIES);
 
 const SOFTWARE = demoSoftware(); // built once so edits in the demo survive re-renders
@@ -62,8 +60,8 @@ function view(k: ModuleKey) {
     case "payables": return <Payables />;
     case "close": return <CloseTracker month={DEMO_CLOSE_MONTH} doc={DEMO_CLOSE_DOC} isAdmin xero={DEMO_CLOSE_XERO} demo />;
     case "external": return <ExternalFactors signedIn={false} isAdmin={false} doc={EXTERNAL_DOC} risks={null} news={{}} book={BOOK} />;
-    case "people": return <PeoplePlaceholder />;
-    case "health": return <ClientHealthPlaceholder />;
+    case "people": return <PeopleDemo />;
+    case "health": return <ClientHealthDemo />;
     case "actions": return <ActionsTracker />;
     case "risks": return <RiskRegister />;
     case "market": return <MarketInsights />;
